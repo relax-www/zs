@@ -12,7 +12,7 @@ import matplotlib
 from sklearn.preprocessing import MinMaxScaler,StandardScaler
 from sklearn.model_selection import train_test_split, KFold, cross_val_score  # 交叉验证法的库
 from sklearn.linear_model import LinearRegression, Ridge, RidgeCV, Lasso, LassoCV
-import LSTM as lt
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 resource_path = r"NOx_data.xlsx"
