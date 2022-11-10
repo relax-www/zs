@@ -45,6 +45,7 @@ if __name__ == "__main__":
     alpha_range = np.logspace(-8, -2, 200, base=10)
     print(alpha_range)  # 200个自定义的alpha值
 
+
     # LassoCV
     model= LassoCV(alphas=alpha_range, cv=5,max_iter=10000)
 
