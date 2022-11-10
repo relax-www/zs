@@ -40,7 +40,7 @@ def Model():
 
 if __name__ == "__main__":
     # X_train, X_test, y_train, y_test=[],[],[],[]
-
+#121231241
     X_train, X_test, y_train, y_test,scaler=Data_prepared()
     alpha_range = np.logspace(-8, -2, 200, base=10)
     print(alpha_range)  # 200个自定义的alpha值
