@@ -1,5 +1,21 @@
 # Nox论文复现
 
+####11.11
+
+1.lasso由于是带有绝对值，是不存在解析解的，因此无论怎么样他都是一个有偏估计，那么每一次计算的loss值就不是真正的最小值。
+
+2.同时，由于lasso=L1是惩罚项+loss_function,在实际估算的时候，是使用 loss_function 来估算的，但训练的时候是用lasso来迭代计算的。
+
+3.既然是有偏估计，那么其解算方法就有两种：坐标下降法、LAR。迭代计算对数据噪声十分敏感。同时由于L1惩罚项的固定形式，对于那一些目标变量和噪声变量都具有压缩的，只是噪声减少的多，被压成了0；而目标变量只是压缩的少了一点。
+
+4.共线性问题，我的理解是是原有的迭代形成的解出现了可能存在的多组解。每一次计算都有可能出现截然不同的结果。那么在回归的时候，受噪声的影响是极其严重的。
+
+5.LSTM中是可以应用lasso的。有核方法：核lasso，把lasso应用于非线性的模型之中。在keras中lstm层存在kernel，recurrent，bias，activity四种可以预设的正则化核方法。
+尝试了预设kernel为L1，入为0.001，重新运行200次发现，与之前实验参数对比最好的情况没有什么变化。
+
+
+
+
 #### 介绍
 1.LSTM中为Nox论文复现的代码，有200次搜索的方法和路径。
 
@@ -10,24 +26,3 @@
 4.train.xlsx是训练数据和结果数据的保存位置
 
 
-
-#### 软件架构
-
-#### 安装教程
-
-
-#### 使用说明
-
-
-#### 参与贡献
-
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
