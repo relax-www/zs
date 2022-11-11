@@ -24,10 +24,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 
 resource_path = r"NOx_data.xlsx"
-model_save_path = "E:\\code\\DATA\\NOx_Data\\NOx_model_1.h5"
+model_save_path = r"NOx_model_1.h5"
 # train_history_path = "E:\\code\\DATA\\NOx_Data\\NOx_train_process_1.txt"
 train_history_path = r"train.xlsx"
-LSTM_Model_Png = 'E:\\code\\DATA\\NOx_Data\\model.png'
+LSTM_Model_Png = r'model.png'
 Time_Step = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 Learn_Rate = [0.1, 0.01, 0.001, 0.0001]
 Hidden_Node = [16, 32, 64, 128, 256]
@@ -38,7 +38,7 @@ learn_rate = 0.01
 hidden_node = 256
 # 1 训练
 # 2 测试+输出
-case = 1
+case = 2
 
 
 # root_mean_squared_error是MSE的开方
@@ -85,7 +85,7 @@ def LSTM(x_train, y_train):
         # 此处  batch_size=16  为自己设置，没有依据，瞎蒙了一个   最后batch_size=1太慢了，还是16
 
         # hist = model.fit(train_x, train_y, batch_size=64, epochs=300, callbacks=[Early_Stop])
-        hist = model.fit(train_x, train_y, batch_size=64, epochs=60)
+        hist = model.fit(train_x, train_y, batch_size=64, epochs=60,verbose=0)
         ##################记录训练的原始参数######################
         # frame_data = pd.DataFrame(hist.history)
         # frame_title = pd.DataFrame({'parameter': [time_step, learn_rate, hidden_node,i]})
@@ -404,7 +404,7 @@ if __name__ == "__main__":
                                               startrow=Start_Row+1,
                                               index=False, header=False)
                             writer.save()
-                        To_Excel_Result(real=real, pred=pred)
+                        #To_Excel_Result(real=real, pred=pred)
 
                         # To_Model_Png(model)
     time_end = time.time()
