@@ -54,7 +54,7 @@ def LSTM(x_train, y_train):
 
     model = keras.Sequential()
     model.add(keras.layers.LSTM(units=hidden_node, activation='tanh', recurrent_activation="sigmoid"
-                                ,kernel_regularizer=keras.regularizers.l1(0.001),input_shape=(time_step, 30)))
+                                ,kernel_regularizer=keras.regularizers.l1(0.01),input_shape=(time_step, 30)))
     # model.add(keras.layers.LSTM())input_dim=30,input_length=4,
     # ten units LSTM
     model.add(keras.layers.Dense(1))

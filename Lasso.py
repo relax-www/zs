@@ -44,13 +44,13 @@ if __name__ == "__main__":
     # X_train, X_test, y_train, y_test=[],[],[],[]
 #121231241
     X_train, X_test, y_train, y_test,scaler=Data_prepared()
-    alpha_range = np.logspace(-8, -2, 200, base=10)
+    alpha_range = np.logspace(-3, -1, 200, base=10)
     print(alpha_range)  # 200个自定义的alpha值
 
 
     # LassoCV
     model= LassoCV(alphas=alpha_range, cv=5,max_iter=10000)
-
+    # model = LassoCV(alphas=0.01)
     model.fit(X_train,y_train)
 
     best_alpha = model.alpha_
@@ -58,8 +58,9 @@ if __name__ == "__main__":
     mean = model.mse_path_.mean(axis=1)  # 有注意到在岭回归中我们的轴向是axis=0吗?
     print(mean.shape)
     print(best_alpha)
-    #print(each_five_alpha)
+    print(each_five_alpha)
     w = model.coef_
+    print(w)
 
     # 获取R2指数
     r2_score = model.score(X_test, y_test)  # 0.6038982670571436
